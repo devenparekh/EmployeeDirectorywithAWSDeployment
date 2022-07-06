@@ -36,6 +36,7 @@ public class StudentService {
     }
 
     public List<Student> getStudents(){
+
         return studentRepository.findAll();
     }
 
@@ -61,5 +62,9 @@ public class StudentService {
             }
             student.setEmail(email);
         }
+    }
+
+    public List<Student> getStudentById(Long studentId) {
+        return studentRepository.findStudentById(studentId);
     }
 }

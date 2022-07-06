@@ -37,6 +37,12 @@ public class StudentController {
         return studentService.getStudents();
     }
 
+    @GetMapping(path = "api/v1/student/{studentId}")
+    public List<Student> getStudentById(@PathVariable ("studentId") Long studentId){
+
+        return studentService.getStudentById(studentId);
+    }
+
     @PostMapping(path = "api/v1/student/register")
     public void register(@RequestBody Student student){
 
