@@ -1,0 +1,60 @@
+to install jdbc connector in linux ec2 instance:
+yum install mysql-connector-java
+
+to send file over scp to linux via cmd:
+scp -i privatekey.pem "file name" ec2-user@ec2-publicdnsname:~
+
+to ssh into linux instance via cmd:
+ssh -i privatekey.pem ec2-user@ec2-publicdnsname
+
+to get root admin permissions in linux:
+sudo su
+
+to connect to mysql after creating amazon rds mysql instance:
+mysql -h studentdb.cbekeqndujia.us-west-2.rds.amazonaws.com -P 3306 -u admin -p
+where, studentdb.cbekeqndujia.us-west-2.rds.amazonaws.com is the endpoint of rds instance.
+
+to install apache http server:
+sudo yum install httpd -y
+
+to Install git in your EC2 instance:
+sudo yum install git -y
+-----------------------------------------------------------------------------------------------
+
+Steps to connect Ec2 instance to RDS and configuring the security group:
+
+1) Create VPC in a region and select 2 AZs.
+2) Create 2 public subnets and 2 private subnets in both AZs.
+3) Create Ec2 instance in the above created vpc and select the public subnet 1 for the instance and upload jar file to ec2.
+4) Create Security groups for Ec2 instance and for DB security groups seperately. Follow the video : https://www.youtube.com/watch?v=Ty6UIS5xvGc
+5) Go to RDS and create a subnet group in the created vpc and select 2 private subnets created before for storing the rds instance.
+6) Create the RDS instance, apply the security group created before for the 3306 port to the rds instance.
+7) follow the command above from ec2 instance and create a db in rds instance.
+8) get the endpoint and port number from rds instance and replace it with localhost:8080 in spring.datasource.url in your application properties file, change the username and password according to rds instance.
+9) that's it! happy websiting!
+
+Security group configuration for Ec2 instance:
+
+sgr-090511b8166c6e103 TCP 80
+0.0.0.0/0
+
+sgr-09a2476815fc97ff6 TCP 0 - 65535
+0.0.0.0/0
+
+sgr-0b259aa5f9ae98e11 TCP 443
+0.0.0.0/0
+
+sgr-0bccac9b08ba90561 TCP 22
+0.0.0.0/0
+
+sgr-03072d0ed162e20e3 TCP 80
+::/0
+
+sgr-0ea7048cccce20675 TCP 443
+::/0
+
+
+Security group configuration for RDS instance:
+
+sgr-0cc1d54e4fca0614f TCP 3306
+0.0.0.0/0
