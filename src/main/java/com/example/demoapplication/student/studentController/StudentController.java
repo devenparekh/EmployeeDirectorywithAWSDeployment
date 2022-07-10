@@ -31,7 +31,7 @@ public class StudentController {
         return "Successfully Logged IN! Welcome to Student Application!";
     }
 
-    @GetMapping(path = "api/v1/student")
+    @GetMapping(path = "/api/v1/student")
     public List<Student> getStudents(){
 
         return studentService.getStudents();
