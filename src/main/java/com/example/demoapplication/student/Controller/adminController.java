@@ -3,6 +3,7 @@ package com.example.demoapplication.student.Controller;
 import com.example.demoapplication.student.Service.StudentService;
 import com.example.demoapplication.student.definition.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Consumes;
@@ -16,20 +17,15 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class adminController {
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
     @Autowired
     public adminController(StudentService studentService) {
         this.studentService = studentService;
     }
 
-    @GetMapping(path = "/adminloginSuccess")
-    public String welCome(){
 
-        return "Admin Successfully Logged IN! Welcome to Student Application!";
-    }
-
-    @GetMapping(path = "/api/v1/student")
+    @GetMapping(path = "/api/v1/getAllStudents")
     public List<Student> getStudents(){
 
         return studentService.getStudents();
@@ -47,10 +43,14 @@ public class adminController {
     }
 
     @PutMapping(path = "api/v1/student/{studentId}")
-    public void updateStudent(@PathVariable ("studentId") Long studentId,
-                              @RequestParam(required = false) String name,
-                              @RequestParam(required = false) String email){
-        studentService.updateEntry(studentId,name,email);
+    public ResponseEntity<Student> updateStudent(@PathVariable ("studentId") Long studentId,
+                                        @RequestParam(required = false) String name,
+                                        @RequestParam(required = false) String email,
+                                        @RequestParam(required = false) Integer age){
+
+       Student s = studentService.updateEntry(studentId,name,email,age);
+
+       return ResponseEntity.ok(s);
     }
 
 }

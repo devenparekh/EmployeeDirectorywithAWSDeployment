@@ -75,7 +75,10 @@ public class StudentService {
     }
 
     @Transactional
-    public void updateEntry(Long studentId, String name, String email) {
+    public Student updateEntry(Long studentId, String name, String email, Integer age) {
+
+        Student updatedStudent = new Student();
+
         System.out.println("************* Inside updateEntry Method **********");
 
         Student student = studentRepository.findById(studentId)
@@ -83,7 +86,14 @@ public class StudentService {
 
             if (name != null && name.length()>0 && !student.getName().equals(name)){
                 student.setName(name);
+                updatedStudent.setName(name);
                 System.out.println("Name updated from " + student.getName() + " to " + name);
+            }
+
+            if (age != null && age>0 && !student.getAge().equals(age)){
+                student.setAge(age);
+                updatedStudent.setAge(age);
+                System.out.println("Age updated from " + student.getAge() + " to " + age);
             }
 
             if (email != null && email.length()>0 && !student.getEmail().equals(email)){
@@ -94,16 +104,18 @@ public class StudentService {
                         throw new IllegalStateException("Email already present.");
                     }
                 student.setEmail(email);
+                updatedStudent.setEmail(email);
                 System.out.println("Email updated from " + student.getEmail() + " to " + email);
         }
         System.out.println("************* Exiting updateEntry Method **********");
+            return updatedStudent;
     }
 
     public Student getStudentById(Long studentId) {
         System.out.println("************* Inside getStudentsById Method **********");
 
         Student studentById = studentRepository.findStudentById(studentId);
-            if (studentById.equals(null)){
+            if (studentById.getId()==0){
                 System.out.println("Could not find student by the given Id");
             }
             System.out.println("Found following Details for Student by Id " + studentId + " : " + studentById);

@@ -23,16 +23,10 @@ public class UserController {
         this.studentService = studentService;
     }
 
-    @GetMapping(path = "/loginSuccess")
-    public String welCome(){
-
-        return "User Successfully Logged IN! Welcome to Student Application!";
-    }
-
     @GetMapping(path = "api/v1/student/{studentId}")
     public ResponseEntity<Student> getStudentById(@PathVariable ("studentId") Long studentId){
 
-            Student studentById = new Student();
+            Student studentById;
             studentById = studentService.getStudentById(studentId);
 
             return ResponseEntity.ok(studentById);
@@ -46,18 +40,12 @@ public class UserController {
         return ResponseEntity.ok(student);
     }
 
-    @DeleteMapping(path = "api/v1/student/{studentId}")
-    public ResponseEntity<String> removeEntry(@PathVariable ("studentId") Long studentId){
-
-        studentService.deleteEntry(studentId);
-
-        return ResponseEntity.ok("Entry Deleted!");
-    }
-
     @PutMapping(path = "api/v1/student/{studentId}")
     public void updateStudent(@PathVariable ("studentId") Long studentId,
                               @RequestParam(required = false) String name,
-                              @RequestParam(required = false) String email){
-        studentService.updateEntry(studentId,name,email);
+                              @RequestParam(required = false) String email,
+                              @RequestParam(required = false) Integer age
+    ){
+        studentService.updateEntry(studentId,name,email,age);
     }
 }
