@@ -1,12 +1,11 @@
-package com.example.demoapplication.student.studentService;
+package com.example.demoapplication.student.Service;
 
-import com.example.demoapplication.student.studentdefinition.Student;
-import com.example.demoapplication.student.studentRepository.StudentRepository;
+import com.example.demoapplication.student.definition.Student;
+import com.example.demoapplication.student.Repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,11 +99,11 @@ public class StudentService {
         System.out.println("************* Exiting updateEntry Method **********");
     }
 
-    public List<Student> getStudentById(Long studentId) {
+    public Student getStudentById(Long studentId) {
         System.out.println("************* Inside getStudentsById Method **********");
 
-        List<Student> studentById = studentRepository.findStudentById(studentId);
-            if (studentById.isEmpty()){
+        Student studentById = studentRepository.findStudentById(studentId);
+            if (studentById.equals(null)){
                 System.out.println("Could not find student by the given Id");
             }
             System.out.println("Found following Details for Student by Id " + studentId + " : " + studentById);

@@ -1,46 +1,38 @@
-package com.example.demoapplication.student.studentController;
+package com.example.demoapplication.student.Controller;
 
-import com.example.demoapplication.student.studentdefinition.Student;
-import com.example.demoapplication.student.studentService.StudentService;
+import com.example.demoapplication.student.Service.StudentService;
+import com.example.demoapplication.student.definition.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import java.util.List;
 
-
 @RestController
-@RequestMapping(path = {"/s1"})
+@RequestMapping(path = {"/admin"})
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class StudentController {
+public class adminController {
 
     private StudentService studentService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
-
+    public adminController(StudentService studentService) {
         this.studentService = studentService;
     }
 
-    @GetMapping()
+    @GetMapping(path = "/adminloginSuccess")
     public String welCome(){
 
-        return "Successfully Logged IN! Welcome to Student Application!";
+        return "Admin Successfully Logged IN! Welcome to Student Application!";
     }
 
     @GetMapping(path = "/api/v1/student")
     public List<Student> getStudents(){
 
         return studentService.getStudents();
-    }
-
-    @GetMapping(path = "api/v1/student/{studentId}")
-    public List<Student> getStudentById(@PathVariable ("studentId") Long studentId){
-
-        return studentService.getStudentById(studentId);
     }
 
     @PostMapping(path = "api/v1/student/register")
@@ -60,4 +52,5 @@ public class StudentController {
                               @RequestParam(required = false) String email){
         studentService.updateEntry(studentId,name,email);
     }
+
 }

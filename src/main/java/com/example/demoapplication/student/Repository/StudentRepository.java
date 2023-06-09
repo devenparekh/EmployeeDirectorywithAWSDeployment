@@ -1,6 +1,6 @@
-package com.example.demoapplication.student.studentRepository;
+package com.example.demoapplication.student.Repository;
 
-import com.example.demoapplication.student.studentdefinition.Student;
+import com.example.demoapplication.student.definition.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +14,5 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
 
     Optional<Student> findStudentByName(String name);
 
-    List<Student> findStudentById(Long id);
+    Student findStudentById(Long id);
 }
