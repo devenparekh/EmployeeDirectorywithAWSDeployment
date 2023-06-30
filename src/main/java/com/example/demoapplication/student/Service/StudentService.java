@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,12 +76,10 @@ public class StudentService {
     }
 
     @Transactional
-    public Student updateEntry(Long studentId, String name, String email, Integer age) {
-
+    public Student updateEntry(Long studentId, String name, String email, String dob) {
         Student updatedStudent = new Student();
 
         System.out.println("************* Inside updateEntry Method **********");
-
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(()-> new IllegalStateException("Student ID not found."));
 
@@ -90,16 +89,15 @@ public class StudentService {
                 System.out.println("Name updated from " + student.getName() + " to " + name);
             }
 
-            if (age != null && age>0 && !student.getAge().equals(age)){
-                student.setAge(age);
-                updatedStudent.setAge(age);
-                System.out.println("Age updated from " + student.getAge() + " to " + age);
+            LocalDate dateofBirth = LocalDate.parse(dob);
+            if (dateofBirth != null && !student.getDob().equals(dateofBirth)){
+                student.setDob(dateofBirth);
+                updatedStudent.setDob(dateofBirth);
+                System.out.println("Age updated from " + student.getDob() + " to " + dateofBirth);
             }
 
             if (email != null && email.length()>0 && !student.getEmail().equals(email)){
-
                 Optional<Student> optionalStudentEmail = studentRepository.findStudentByEmail(email);
-
                     if (optionalStudentEmail.isPresent()){
                         throw new IllegalStateException("Email already present.");
                     }
@@ -113,7 +111,6 @@ public class StudentService {
 
     public Student getStudentById(Long studentId) {
         System.out.println("************* Inside getStudentsById Method **********");
-
         Student studentById = studentRepository.findStudentById(studentId);
             if (studentById.getId()==0){
                 System.out.println("Could not find student by the given Id");

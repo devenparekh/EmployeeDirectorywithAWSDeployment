@@ -1,12 +1,14 @@
 package com.example.demoapplication.student.definition;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 
 
 @Entity
-@Table
+@Table(name = "Student")
 public class Student {
     @Id
     @SequenceGenerator(
@@ -18,10 +20,19 @@ public class Student {
             strategy = GenerationType.SEQUENCE,
             generator = "student_sequence"
     )
+    @ApiModelProperty(notes = "Id of student", name = "Id", value = "test Id")
     private Long id;
+
+    @ApiModelProperty(notes = "Name of student", name = "Name", value = "test name")
     private String name;
+
+    @ApiModelProperty(notes = "Email of student", name = "Email", value = "test Email")
     private String email;
+
+    @ApiModelProperty(notes = "DOB of student", name = "DOB", value = "test DOB")
     private LocalDate dob;
+
+    @ApiModelProperty(notes = "Age of student", name = "Age", value = "test Age")
     private Integer age;
 
     public Student() {
