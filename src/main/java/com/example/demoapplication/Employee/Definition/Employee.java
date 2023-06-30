@@ -1,4 +1,4 @@
-package com.example.demoapplication.student.definition;
+package com.example.demoapplication.Employee.Definition;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -8,44 +8,44 @@ import java.time.Period;
 
 
 @Entity
-@Table(name = "Student")
-public class Student {
+@Table(name = "Employee")
+public class Employee {
     @Id
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "employee_sequence",
+            sequenceName = "employee_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "employee_sequence"
     )
-    @ApiModelProperty(notes = "Id of student", name = "Id", value = "test Id")
+    @ApiModelProperty(notes = "Id of Employee", name = "Id", value = "test Id")
     private Long id;
 
-    @ApiModelProperty(notes = "Name of student", name = "Name", value = "test name")
+    @ApiModelProperty(notes = "Name of Employee", name = "Name", value = "test name")
     private String name;
 
-    @ApiModelProperty(notes = "Email of student", name = "Email", value = "test Email")
+    @ApiModelProperty(notes = "Email of Employee", name = "Email", value = "test Email")
     private String email;
 
-    @ApiModelProperty(notes = "DOB of student", name = "DOB", value = "test DOB")
+    @ApiModelProperty(notes = "DOB of Employee", name = "DOB", value = "test DOB")
     private LocalDate dob;
 
-    @ApiModelProperty(notes = "Age of student", name = "Age", value = "test Age")
+    @ApiModelProperty(notes = "Age of Employee", name = "Age", value = "test Age")
     private Integer age;
 
-    public Student() {
+    public Employee() {
     }
 
-    public Student(Long id, String name, String email, LocalDate dob ) {
+    public Employee(Long id, String name, String email, LocalDate dob ) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
     }
 
-    public Student(String name, String email, LocalDate dob) {
+    public Employee(String name, String email, LocalDate dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;

@@ -1,4 +1,4 @@
-package com.example.demoapplication.student.swaggerConfig;
+package com.example.demoapplication.Employee.swaggerConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class swaggerConfig {
     }
 
     public ApiInfo getApiInfo(){
-        return new ApiInfoBuilder().title("Student Controller Apis")
-                .description("Get Information about Students.").version("1").build();
+        return new ApiInfoBuilder().title("Employee Controller Apis")
+                .description("Get Information about Employees.").version("1").build();
     }
 }
