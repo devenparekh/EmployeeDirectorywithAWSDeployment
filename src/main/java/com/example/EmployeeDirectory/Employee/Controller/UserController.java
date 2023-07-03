@@ -1,7 +1,7 @@
-package com.example.demoapplication.Employee.Controller;
+package com.example.EmployeeDirectory.Employee.Controller;
 
-import com.example.demoapplication.Employee.Definition.Employee;
-import com.example.demoapplication.Employee.Service.EmployeeService;
+import com.example.EmployeeDirectory.Employee.Definition.Employee;
+import com.example.EmployeeDirectory.Employee.Service.EmployeeService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,9 +30,9 @@ public class UserController {
     @GetMapping(path = "/api/v1/getAllEmployees")
     public List<Employee> getEmployees(){
         try {
-            List<Employee> employeeList = new ArrayList<>();
+            List<Employee> employeeList;
             employeeList = employeeService.getEmployees();
-            if(!employeeList.equals(null)){
+            if(employeeList != null){
                 return employeeList;
             }
         } catch (Exception e) {

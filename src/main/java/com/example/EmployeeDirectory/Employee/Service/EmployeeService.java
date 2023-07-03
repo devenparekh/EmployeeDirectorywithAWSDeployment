@@ -1,7 +1,7 @@
-package com.example.demoapplication.Employee.Service;
+package com.example.EmployeeDirectory.Employee.Service;
 
-import com.example.demoapplication.Employee.Definition.Employee;
-import com.example.demoapplication.Employee.Repository.EmployeeRepository;
+import com.example.EmployeeDirectory.Employee.Definition.Employee;
+import com.example.EmployeeDirectory.Employee.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,13 +59,13 @@ public class EmployeeService {
         if (!exists){
         System.out.println("Employee cannot be found for the given ID");
         System.out.println("************* Exiting deleteEntry Method **********");
-            return new String("404 NOT FOUND");
+            return "404 NOT FOUND";
         }
         else {
         System.out.println("Deleting Employee Details for the ID : " + employeeId);
         employeeRepository.deleteById(employeeId);
         System.out.println("************* Exiting deleteEntry Method **********");
-        return new String("200 DATA DELETED");
+        return "200 DATA DELETED";
         }
 
     }

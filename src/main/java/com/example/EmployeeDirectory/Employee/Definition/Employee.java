@@ -1,4 +1,4 @@
-package com.example.demoapplication.Employee.Definition;
+package com.example.EmployeeDirectory.Employee.Definition;
 
 import io.swagger.annotations.ApiModelProperty;
 

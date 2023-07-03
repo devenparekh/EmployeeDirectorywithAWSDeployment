@@ -1,4 +1,4 @@
-package com.example.demoapplication.Employee.swaggerConfig;
+package com.example.EmployeeDirectory.Employee.swaggerConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

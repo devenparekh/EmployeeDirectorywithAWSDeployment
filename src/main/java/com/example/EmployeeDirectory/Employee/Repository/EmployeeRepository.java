@@ -1,6 +1,6 @@
-package com.example.demoapplication.Employee.Repository;
+package com.example.EmployeeDirectory.Employee.Repository;
 
-import com.example.demoapplication.Employee.Definition.Employee;
+import com.example.EmployeeDirectory.Employee.Definition.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
