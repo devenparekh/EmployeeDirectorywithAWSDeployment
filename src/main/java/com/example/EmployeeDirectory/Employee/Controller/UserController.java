@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,7 +19,7 @@ import java.util.List;
 @Api(value = "User Controller", description = "Rest Api related to User Controller")
 public class UserController {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     @Autowired
     public UserController(EmployeeService employeeService) {
