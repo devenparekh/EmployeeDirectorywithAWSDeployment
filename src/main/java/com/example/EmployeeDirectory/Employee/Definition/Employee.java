@@ -1,7 +1,5 @@
 package com.example.EmployeeDirectory.Employee.Definition;
 
-import io.swagger.annotations.ApiModelProperty;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
