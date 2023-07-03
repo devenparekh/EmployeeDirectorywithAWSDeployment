@@ -2,7 +2,7 @@ package com.example.EmployeeDirectory.Employee.Controller;
 
 import com.example.EmployeeDirectory.Employee.Definition.Employee;
 import com.example.EmployeeDirectory.Employee.Service.EmployeeService;
-import io.swagger.annotations.Api;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +27,11 @@ public class UserController {
         this.employeeService = employeeService;
     }
 
+    @ApiOperation(value = "Get All Employees",
+            notes = "This method gets all Employees")
     @GetMapping(path = "/api/v1/getAllEmployees")
-    public List<Employee> getEmployees(){
+    public List<Employee> getEmployees()
+    {
         try {
             List<Employee> employeeList;
             employeeList = employeeService.getEmployees();
@@ -41,8 +44,11 @@ public class UserController {
     return null;
     }
 
+    @ApiOperation(value = "Fetch Employee By ID",
+            notes = "This method gets a Employee by ID")
     @GetMapping(path = "api/v1/Employee/{employeeId}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable ("employeeId") Long employeeId){
+    public ResponseEntity<Employee> getEmployeeById(@ApiParam(name ="EmployeeId", value = "ID of Employee", example = "1", required = true)
+            @PathVariable ("employeeId") Long employeeId){
           try{
               Employee employeeById;
               employeeById = employeeService.getEmployeeById(employeeId);
@@ -54,6 +60,11 @@ public class UserController {
            return null;
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "Not found - The product was not found")
+    })
+    @ApiOperation(value = "Add New Employee",
+            notes = "This method Adds New Employee Records")
     @PostMapping(path = "api/v1/Employee/register")
     public ResponseEntity<Employee> register(@RequestBody Employee employee){
        try{
@@ -66,6 +77,8 @@ public class UserController {
        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(employee);
     }
 
+    @ApiOperation(value = "Update Employee Details By ID",
+            notes = "This method Updates Employee Records by ID")
     @PutMapping(path = "api/v1/Employee/{EmployeeId}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable ("EmployeeId") Long employeeId,
                                                  @RequestParam(required = false) String name,
@@ -82,6 +95,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(updatedEmployee);
     }
 
+    @ApiOperation(value = "Delete Employee Details By ID",
+            notes = "This method deletes Employee Records by ID")
     @DeleteMapping(path = "api/v1/Employee/{EmployeeId}")
     public void removeEntry(@PathVariable ("EmployeeId") Long EmployeeId) {
         try {

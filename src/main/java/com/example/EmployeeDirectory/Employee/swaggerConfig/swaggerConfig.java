@@ -23,7 +23,7 @@ public class swaggerConfig {
     }
 
     public ApiInfo getApiInfo(){
-        return new ApiInfoBuilder().title("Employee Controller Apis")
+        return new ApiInfoBuilder().title("Employee Directory API")
                 .description("Get Information about Employees.").version("1").build();
     }
 }

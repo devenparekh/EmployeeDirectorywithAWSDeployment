@@ -20,19 +20,14 @@ public class Employee {
             strategy = GenerationType.SEQUENCE,
             generator = "employee_sequence"
     )
-    @ApiModelProperty(notes = "Id of Employee", name = "Id", value = "test Id")
     private Long id;
 
-    @ApiModelProperty(notes = "Name of Employee", name = "Name", value = "test name")
     private String name;
 
-    @ApiModelProperty(notes = "Email of Employee", name = "Email", value = "test Email")
     private String email;
 
-    @ApiModelProperty(notes = "DOB of Employee", name = "DOB", value = "test DOB")
     private LocalDate dob;
 
-    @ApiModelProperty(notes = "Age of Employee", name = "Age", value = "test Age")
     private Integer age;
 
     public Employee() {
