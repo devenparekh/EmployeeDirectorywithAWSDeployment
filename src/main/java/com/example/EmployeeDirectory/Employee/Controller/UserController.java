@@ -26,6 +26,11 @@ public class UserController {
         this.employeeService = employeeService;
     }
 
+    @GetMapping("/")
+    public String BasePage(){
+        return "Welcome to the Base Home Page of the Application";
+    }
+
     @ApiOperation(value = "Get All Employees",
             notes = "This method gets all Employees")
     @GetMapping(path = "/api/v1/getAllEmployees")
