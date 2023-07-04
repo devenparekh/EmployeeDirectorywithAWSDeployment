@@ -19,7 +19,7 @@ public class UserDetailsController {
 
     @PostMapping("/newUser")
     public ResponseEntity<String> addNewUser(@RequestBody UserInfo userInfo){
-        if(userInfo.equals(null)){
+        if(userInfo == null){
             return ResponseEntity.notFound().build();
         }else {
             String addedUser = service.addUser(userInfo);
