@@ -1,5 +1,7 @@
 # EmployeeDirectory
- 
+
+Configure the Linux EC2 instance:
+----------------------------------------------------------------------------------------------
 to install jdbc connector in linux ec2 instance:
 yum install mysql-connector-java
 
@@ -21,10 +23,9 @@ sudo yum install httpd -y
 
 to Install git in your EC2 instance:
 sudo yum install git -y
------------------------------------------------------------------------------------------------
 
 Steps to connect Ec2 instance to RDS and configuring the security group:
-
+-----------------------------------------------------------------------------------------------
 1) Create VPC in a region and select 2 AZs.
 2) Create 2 public subnets and 2 private subnets in both AZs.
 3) Create Ec2 instance in the above created vpc and select the public subnet 1 for the instance and upload jar file to ec2.
@@ -36,6 +37,7 @@ Steps to connect Ec2 instance to RDS and configuring the security group:
 9) that's it! happy websiting!
 
 Security group configuration for Ec2 instance:
+-----------------------------------------------------------------------------------------------
 
 sgr-090511b8166c6e103 TCP 80
 0.0.0.0/0
@@ -57,6 +59,7 @@ sgr-0ea7048cccce20675 TCP 443
 
 
 Security group configuration for RDS instance:
+----------------------------------------------------------------------------------------------
 
 sgr-0cc1d54e4fca0614f TCP 3306
 0.0.0.0/0
